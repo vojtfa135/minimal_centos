@@ -21,6 +21,9 @@
   - name: Install minimal pdf viewer
     import_tasks: tasks/install_minimal_pdf_viewer.yml
 
+  - name: Remove essentials for build
+    import_tasks: tasks/remove_build_essential.yml
+
   - name: Remove files and dirs
     import_tasks: tasks/remove.yml
 
