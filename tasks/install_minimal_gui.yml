@@ -1,0 +1,20 @@
+---
+- name: Install minimal Gnome pkgs
+  yum:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - @base-x
+    - gnome-shell
+    - gnome-terminal
+    - gnome-tweaks
+
+- name: Enable graphical target
+  file:
+    src: /usr/lib/systemd/system/graphical.target
+    dest: /etc/systemd/system/default.target
+    state: link
+
+- name: Reboot system
+  reboot:
+  

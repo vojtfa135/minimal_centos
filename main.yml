@@ -3,11 +3,14 @@
   hosts: all
 
   tasks:
-  - name: Include vars
-    include_vars: "{{ item }}.yml"
-    loop:
-      - list
-      - list
+#  - name: Include vars
+#    include_vars: "{{ item }}.yml"
+#    loop:
+#      - list
+#      - list
+
+  - name: Install minimal GUI and reboot
+    import_tasks: tasks/install_minimal_gui.yml
 
   - name: Remove files and dirs
     import_tasks: tasks/remove.yml

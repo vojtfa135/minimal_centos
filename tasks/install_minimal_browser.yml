@@ -1,2 +1,21 @@
 ---
 - name: Fetch repo
+  git:
+    repo: https://github.com/OtterBrowser/otter-browser.git
+    dest: /tmp/otter
+
+- name: Install prerequisites
+  yum:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - qt5−qtbase−devel
+    - qt5−qtmultimedia−devel
+    - qt5−qtsvg−devel
+    - qt5−qtwebkit−devel
+    - build-essential
+
+- name: Install OtterBrowser
+  shell: make && make install
+  args:
+    chdir: /tmp/otter
