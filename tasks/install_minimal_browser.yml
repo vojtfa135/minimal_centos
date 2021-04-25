@@ -13,7 +13,6 @@
     - qt5−qtmultimedia−devel
     - qt5−qtsvg−devel
     - qt5−qtwebkit−devel
-    - build-essential
 
 - name: Install OtterBrowser
   shell: make && make install
