@@ -1,0 +1,5 @@
+---
+- name: Install build-essential
+  yum:
+    name: build-essential
+    state: present

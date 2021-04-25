@@ -1,0 +1,21 @@
+---
+- name: Download Mupdf source
+  get_url:
+    url: https://mupdf.com/downloads/archive/mupdf-1.18.0-source.tar.xz
+    dest: /tmp/mupdf
+
+- name: Decompress Mupdf source
+  unarchive:
+  src: /tmp/mupdf/mupdf-1.18.0-source.tar.xz
+  copy: no
+  dest: /tmp/
+
+- name: Install Mupdf
+  shell: make && make install
+  args:
+    chdir: /tmp/mupdf/mupdf-1.18.0-source
+
+- name: Remove src
+  file:
+    path: /tmp/mupdf
+    state: absent

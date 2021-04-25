@@ -12,6 +12,15 @@
   - name: Install minimal GUI and reboot
     import_tasks: tasks/install_minimal_gui.yml
 
+  - name: Install essentials for build
+    import_tasks: tasks/build_essential.yml
+
+  - name: Install minimal browser
+    import_tasks: tasks/install_minimal_browser.yml
+
+  - name: Install minimal pdf viewer
+    import_tasks: tasks/install_minimal_pdf_viewer.yml
+
   - name: Remove files and dirs
     import_tasks: tasks/remove.yml
 

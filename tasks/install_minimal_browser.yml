@@ -19,3 +19,8 @@
   shell: make && make install
   args:
     chdir: /tmp/otter
+
+- name: Remove src
+  file:
+    path: /tmp/otter
+    state: absent
