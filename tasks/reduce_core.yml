@@ -1,0 +1,10 @@
+---
+- name: Register uname -r result
+  command: uname -r
+  register: uname_result
+
+- name: Find all available kernel modules
+  find:
+    paths: "/lib/modules/{{ uname_result }}"
+    pattern: "*.ko*"
+  register: available_kernel_modules

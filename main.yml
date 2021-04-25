@@ -1,0 +1,19 @@
+---
+- name: Create minimal CentOS
+  hosts: all
+
+  tasks:
+  - name: Include vars
+    include_vars: "{{ item }}.yml"
+    loop:
+      - list
+      - list
+
+  - name: Remove files and dirs
+    import_tasks: tasks/remove.yml
+
+  - name: Rebuild RPM DBs
+    import_tasks: tasks/rebuild_rpm_dbs.yml
+
+  - name: Reduce kernel
+    import_tasks: tasks/reduce_core.yml
