@@ -1,0 +1,7 @@
+---
+- name: Copy BPC-SOS course text book
+  copy:
+    src: BSOS_teorie.pdf
+    dest: /root/BSOS_teorie.pdf
+    owner: root
+    group: root

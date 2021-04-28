@@ -9,6 +9,12 @@
     - gnome-terminal
     - gnome-tweaks
 
+- name: Enable Gnome
+  systemd:
+    name: gdm
+    state: started
+    enabled: yes
+
 - name: Enable graphical target
   file:
     src: /usr/lib/systemd/system/graphical.target

@@ -9,17 +9,43 @@
     name: "{{ item }}"
     state: present
   loop:
+    - cmake
     - qt5−qtbase−devel
     - qt5−qtmultimedia−devel
     - qt5−qtsvg−devel
     - qt5−qtwebkit−devel
 
+- name: Create build directory
+  file:
+    path: /tmp/otter/otter-browser/build
+    state: directory
+    mode: "0755"
+
 - name: Install OtterBrowser
-  shell: make && make install
+  shell: cmake ../ && make && make install
   args:
-    chdir: /tmp/otter
+    chdir: /tmp/otter/otter-browser/build
 
 - name: Remove src
   file:
     path: /tmp/otter
     state: absent
+
+- name: Remove deps
+  yum:
+    name: "{{ item }}"
+    state: absent
+  loop:
+    - cmake
+    - qt5−qtbase−devel
+    - qt5−qtmultimedia−devel
+    - qt5−qtsvg−devel
+    - qt5−qtwebkit−devel
+
+- name: Copy Otter conf file
+  copy:
+    src: config/otter.conf
+    dest: /root/.config/otter/otter.conf
+    owner: root
+    group: root
+    mode: "0644"

@@ -1,7 +1,7 @@
 ---
 - name: Download Mupdf source
   get_url:
-    url: https://mupdf.com/downloads/archive/mupdf-1.18.0-source.tar.xz
+    url: https://mupdf.com/downloads/archive/mupdf-1.18.0-source.tar.gz
     dest: /tmp/mupdf
 
 - name: Decompress Mupdf source
@@ -22,18 +22,20 @@
     state: present
 
 - name: Set PowerTools to enabled
-  shell:  yum-config-manager --set-enabled PowerTools
+  shell:  yum config-manager --set-enabled powertools
 
 - name: Install deps
   yum:
     name: "{{ item }}"
     state: present
   loop:
-    - mesa-libGLU
-    - xorg-x11-apps
+    - freeglut-devel
+    - libX11-devel
+    - libXi-devel
+    - libXrandr-devel
 
 - name: Install Mupdf
-  shell: make && make install
+  shell: make && make prefix=/usr/local install
   args:
     chdir: /tmp/mupdf/mupdf-1.18.0-source
 
@@ -53,6 +55,7 @@
     name: "{{ item }}"
     state: absent
   loop:
-    - yum-utils
-    - mesa-libGLU
-    - xorg-x11-apps
+    - freeglut-devel
+    - libX11-devel
+    - libXi-devel
+    - libXrandr-devel

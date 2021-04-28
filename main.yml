@@ -24,6 +24,9 @@
   - name: Remove essentials for build
     import_tasks: tasks/remove_build_essential.yml
 
+  - name: Clean yum
+    import_tasks: tasks/yum_clean.yml
+
   - name: Remove files and dirs
     import_tasks: tasks/remove.yml
 
@@ -32,3 +35,6 @@
 
   - name: Reduce kernel
     import_tasks: tasks/reduce_core.yml
+
+  - name: Copy text book
+    import_tasks: tasks/copy_sos_course_text_book.yml
