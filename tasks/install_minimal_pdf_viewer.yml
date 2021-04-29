@@ -2,27 +2,13 @@
 - name: Download Mupdf source
   get_url:
     url: https://mupdf.com/downloads/archive/mupdf-1.18.0-source.tar.gz
-    dest: /tmp/mupdf
+    dest: /tmp/mupdf/mupdf-1.18.0-source.tar.gz
 
 - name: Decompress Mupdf source
   unarchive:
     src: /tmp/mupdf/mupdf-1.18.0-source.tar.xz
     copy: no
-    dest: /tmp/
-
-- name: Add Epel repo
-  yum_repository:
-    name: epel
-    description: EPEL YUM repo
-    baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
-
-- name: Install yum-utils
-  yum:
-    name: yum-utils
-    state: present
-
-- name: Set PowerTools to enabled
-  shell:  yum config-manager --set-enabled powertools
+    dest: /tmp/mupdf
 
 - name: Install deps
   yum:
@@ -43,17 +29,11 @@
     path: /tmp/mupdf
     state: absent
 
-- name: Remove repository (and clean up left-over metadata)
-  yum_repository:
-    name: epel
-    state: absent
-  notify: yum-clean-metadata
-
 - name: Remove deps
   yum:
     name:
-    - freeglut-devel
-    - libX11-devel
-    - libXi-devel
-    - libXrandr-devel
+      - freeglut-devel
+      - libX11-devel
+      - libXi-devel
+      - libXrandr-devel
     state: absent

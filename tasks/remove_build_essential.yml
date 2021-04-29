@@ -1,7 +1,5 @@
 ---
 - name: Remove Development Tools and build-essential
   yum:
-    name:
-      - "@Development tools"
-      - build-essential
+    name: "@Development tools"
     state: absent

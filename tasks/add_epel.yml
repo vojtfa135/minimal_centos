@@ -1,0 +1,14 @@
+---
+- name: Add Epel repo
+  yum_repository:
+    name: epel
+    description: EPEL YUM repo
+    baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+
+- name: Install yum-utils
+  yum:
+    name: yum-utils
+    state: present
+
+- name: Set PowerTools to enabled
+  shell:  yum config-manager --set-enabled powertools
