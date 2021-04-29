@@ -1,8 +1,7 @@
 ---
 - name: Install Development Tools and build-essential
   yum:
-    name: "{{ item }}"
+    name:
+      - "@Development tools"
+      - build-essential
     state: present
-  loop:
-    - @development-tools
-    - build-essential

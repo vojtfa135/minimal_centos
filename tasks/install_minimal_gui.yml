@@ -1,13 +1,12 @@
 ---
 - name: Install minimal Gnome pkgs
   yum:
-    name: "{{ item }}"
+    name:
+      - "@base-x"
+      - gnome-shell
+      - gnome-terminal
+      - gnome-tweaks
     state: present
-  loop:
-    - @base-x
-    - gnome-shell
-    - gnome-terminal
-    - gnome-tweaks
 
 - name: Enable Gnome
   systemd:
@@ -23,4 +22,3 @@
 
 - name: Reboot system
   reboot:
-  

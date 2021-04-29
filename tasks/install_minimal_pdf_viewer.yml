@@ -6,9 +6,9 @@
 
 - name: Decompress Mupdf source
   unarchive:
-  src: /tmp/mupdf/mupdf-1.18.0-source.tar.xz
-  copy: no
-  dest: /tmp/
+    src: /tmp/mupdf/mupdf-1.18.0-source.tar.xz
+    copy: no
+    dest: /tmp/
 
 - name: Add Epel repo
   yum_repository:
@@ -26,13 +26,12 @@
 
 - name: Install deps
   yum:
-    name: "{{ item }}"
+    name:
+      - freeglut-devel
+      - libX11-devel
+      - libXi-devel
+      - libXrandr-devel
     state: present
-  loop:
-    - freeglut-devel
-    - libX11-devel
-    - libXi-devel
-    - libXrandr-devel
 
 - name: Install Mupdf
   shell: make && make prefix=/usr/local install
@@ -52,10 +51,9 @@
 
 - name: Remove deps
   yum:
-    name: "{{ item }}"
-    state: absent
-  loop:
+    name:
     - freeglut-devel
     - libX11-devel
     - libXi-devel
     - libXrandr-devel
+    state: absent

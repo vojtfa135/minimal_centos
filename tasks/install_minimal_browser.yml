@@ -1,30 +1,29 @@
 ---
-- name: Fetch repo
+- name: Fetch Otter-Browser repo
   git:
     repo: https://github.com/OtterBrowser/otter-browser.git
     dest: /tmp/otter
 
 - name: Install prerequisites
   yum:
-    name: "{{ item }}"
+    name:
+      - cmake
+      - qt5−qtbase−devel
+      - qt5−qtmultimedia−devel
+      - qt5−qtsvg−devel
+      - qt5−qtwebkit−devel
     state: present
-  loop:
-    - cmake
-    - qt5−qtbase−devel
-    - qt5−qtmultimedia−devel
-    - qt5−qtsvg−devel
-    - qt5−qtwebkit−devel
 
 - name: Create build directory
   file:
-    path: /tmp/otter/otter-browser/build
+    path: /tmp/otter/build
     state: directory
     mode: "0755"
 
 - name: Install OtterBrowser
   shell: cmake ../ && make && make install
   args:
-    chdir: /tmp/otter/otter-browser/build
+    chdir: /tmp/otter/build
 
 - name: Remove src
   file:
@@ -33,14 +32,13 @@
 
 - name: Remove deps
   yum:
-    name: "{{ item }}"
+    name:
+      - cmake
+      - qt5−qtbase−devel
+      - qt5−qtmultimedia−devel
+      - qt5−qtsvg−devel
+      - qt5−qtwebkit−devel
     state: absent
-  loop:
-    - cmake
-    - qt5−qtbase−devel
-    - qt5−qtmultimedia−devel
-    - qt5−qtsvg−devel
-    - qt5−qtwebkit−devel
 
 - name: Copy Otter conf file
   copy:
