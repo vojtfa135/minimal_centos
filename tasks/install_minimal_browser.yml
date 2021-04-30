@@ -7,6 +7,10 @@
 - name: Install prerequisites
   yum:
     name:
+      - freeglut-devel
+      - libX11-devel
+      - libXi-devel
+      - libXrandr-devel
       - cmake
       - qt5−qtbase−devel
       - qt5−qtmultimedia−devel
@@ -33,6 +37,10 @@
 - name: Remove deps
   yum:
     name:
+      - freeglut-devel
+      - libX11-devel
+      - libXi-devel
+      - libXrandr-devel
       - cmake
       - qt5−qtbase−devel
       - qt5−qtmultimedia−devel
