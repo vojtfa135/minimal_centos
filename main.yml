@@ -18,11 +18,11 @@
   - name: Install epel
     import_tasks: tasks/add_epel.yml
 
-  - name: Install minimal browser
-    import_tasks: tasks/install_minimal_browser.yml
-
   - name: Install minimal pdf viewer
     import_tasks: tasks/install_minimal_pdf_viewer.yml
+
+  - name: Install minimal browser
+    import_tasks: tasks/install_minimal_browser.yml
 
   - name: Remove epel
     import_tasks: tasks/remove_epel.yml

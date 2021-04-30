@@ -4,7 +4,7 @@
     repo: https://github.com/OtterBrowser/otter-browser.git
     dest: /tmp/otter
 
-- name: Install prerequisites
+- name: Install deps
   yum:
     name:
       - freeglut-devel

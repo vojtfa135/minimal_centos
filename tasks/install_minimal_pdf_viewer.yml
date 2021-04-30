@@ -1,4 +1,10 @@
 ---
+- name: Create mupdf directory
+  file:
+    path: /tmp/mupdf
+    state: directory
+    mode: "0755"
+
 - name: Download Mupdf source
   get_url:
     url: https://mupdf.com/downloads/archive/mupdf-1.18.0-source.tar.gz
@@ -6,7 +12,7 @@
 
 - name: Decompress Mupdf source
   unarchive:
-    src: /tmp/mupdf/mupdf-1.18.0-source.tar.xz
+    src: /tmp/mupdf/mupdf-1.18.0-source.tar.gz
     copy: no
     dest: /tmp/mupdf
 
