@@ -5,7 +5,6 @@
       - "@base-x"
       - gnome-shell
       - gnome-terminal
-      - gnome-tweaks
     state: present
 
 - name: Enable Gnome
